@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f 
+
+  RewriteRule ^ index.php [L]
+
+
+</IfModule>
+
+
+<IfModule mod_headers.c>
+#  ##ce header active la protection contre le clickjacking dans l'application (ici je sépécifie que le contenu de iframe doit appartenir au méme uri  de serveur)
+  Header always append X-Frame-Options SAMEORIGIN
+#  ##activer la protection xss dans chrome,safari,internet explorer.(only reflective xss)
+  Header set X-XSS-Protection "1; mode=block"
+#  ##activation de la protection contre le content sniffing chrome,safari,internet explorer
+  Header set X-Content-Type-Options nosniff
+#  ##ici j'ajoute le header de content security policy pour securiser contre xss.
+#  ##frame-src none est equivalent x-frame-options deny.
+#Header always append Content-Security-Policy "default-src 'self' fonts.googleapis.com fonts.gstatic.com; media-src 'none'; object-src 'none'; frame-src 'none'; style-src 'self' fonts.googleapis.com 'unsafe-inline'"
+# Header set Content-Security-Policy po"default-src 'self' fonts.googleapis.com fonts.gstatic.com; media-src 'none'; object-src 'none'; frame-src 'none'; style-src 'self' fonts.googleapis.com 'unsafe-inline'"
+
+</IfModule>
