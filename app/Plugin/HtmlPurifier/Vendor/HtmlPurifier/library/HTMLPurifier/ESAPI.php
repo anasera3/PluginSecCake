@@ -455,6 +455,13 @@ public function test(){
         self::$_sanitizer = $sanitizer;
     }
         
+    
+    
+    public function tester(){
+        
+        
+        echo ' je suis esapi en utilisant uses';
+    }
  
 }
 ?>

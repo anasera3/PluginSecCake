@@ -365,7 +365,7 @@ class HTMLPurifier_DefaultValidator implements HTMLPurifier_Validator
     private function _assertValidInteger($context, $input, $minValue, $maxValue,
     $allowNull
     ) {
-        $nvr = new IntegerValidationRule(
+        $nvr = new HTMLPurifier_IntegerValidationRule(
             'IntegerValidator', $this->_encoder, $minValue, $maxValue
         );
         $nvr->setAllowNull($allowNull);

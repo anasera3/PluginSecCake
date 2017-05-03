@@ -161,7 +161,7 @@ class HTMLPurifier_DefaultEncoder implements Encoder
         }
         if ( $foundCount >= 2 && $mixedCount > 1 ) {
             if ( $strict == true ) {
-                throw new IntrusionException('Input validation failure',
+                throw new HTMLPurifier_IntrusionException('Input validation failure',
                     'Multiple (' . $foundCount . 'x) and mixed ('
                     . $mixedCount . 'x) encoding detected in ' . $input
                 );
@@ -174,7 +174,7 @@ class HTMLPurifier_DefaultEncoder implements Encoder
             }
         } else if ( $foundCount >= 2 ) {
             if ( $strict == true ) {
-                throw new IntrusionException(
+                throw new HTMLPurifier_IntrusionException(
                     'Input validation failure',
                     "Multiple encoding ({$foundCount}x) detected in {$input}"
                 );

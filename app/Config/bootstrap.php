@@ -27,7 +27,7 @@ Cache::config('default', array('engine' => 'File'));
 
 
 
-CakePlugin::load('HtmlPurifier', array('bootstrap' => true));
+debug(CakePlugin::load('HtmlPurifier', array('bootstrap' => true)));
 Purifier::config('ConfigName', array(
 		'HTML.AllowedElements' => 'a, em, blockquote, p, strong, pre, code, span,ul,ol,li,img',
 		'HTML.AllowedAttributes' => 'a.href, a.title, img.src, img.alt'

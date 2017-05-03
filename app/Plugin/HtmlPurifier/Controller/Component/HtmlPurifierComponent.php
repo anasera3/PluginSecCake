@@ -42,4 +42,14 @@ class HtmlPurifierComponent extends Component {
 		return Purifier::clean($markup, $config);
 	}
 
+        
+        
+        
+        
+        public function test(){
+            
+            
+            echo 'i am the test of your plugin';
+            
+        }
 }

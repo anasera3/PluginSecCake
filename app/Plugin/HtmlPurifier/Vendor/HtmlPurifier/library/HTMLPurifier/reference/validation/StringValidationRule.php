@@ -198,7 +198,7 @@ class HTMLPurifier_StringValidationRule extends HTMLPurifier_BaseValidationRule
             $context = 'NoContextSupplied'; // TODO Invalid Arg Exception?
         }
         if (! is_string($input) && $input !== null) {
-            throw new ValidationException(
+            throw new HTMLPurifier_ValidationException(
                 "{$context}: Input required",
                 "Input was not a string or NULL: context={$context}",
                 $context
@@ -215,7 +215,7 @@ class HTMLPurifier_StringValidationRule extends HTMLPurifier_BaseValidationRule
             if ($this->allowNull) {
                 return null;
             }
-            throw new ValidationException(
+            throw new HTMLPurifier_ValidationException(
                 "{$context}: Input required",
                 "Input required: context={$context}",
                 $context
@@ -228,7 +228,7 @@ class HTMLPurifier_StringValidationRule extends HTMLPurifier_BaseValidationRule
             $canonical = $this->encoder->canonicalize($input, true);
         } catch (EncodingException $e)
         {
-            throw new ValidationException(
+            throw new HTMLPurifier_ValidationException(
                 $context . ': Invalid input. Encoding problem detected.',
                 'An EncodingException was thrown during canonicalization '.
                 'of the input.',
@@ -240,7 +240,7 @@ class HTMLPurifier_StringValidationRule extends HTMLPurifier_BaseValidationRule
         $charEnc = mb_detect_encoding($canonical);
         $length = mb_strlen($canonical, $charEnc);
         if ($length < $this->minLength) {
-            throw new ValidationException(
+            throw new HTMLPurifier_ValidationException(
                 $context . ': Invalid input. Input was shorter than the '.
                 'Minimum length of ' . $this->minLength . ' characters.',
                 'Length of Input was less than the minimum length of ' . 
@@ -249,7 +249,7 @@ class HTMLPurifier_StringValidationRule extends HTMLPurifier_BaseValidationRule
             );
         }
         if ($length > $this->maxLength) {
-            throw new ValidationException(
+            throw new HTMLPurifier_ValidationException(
                 $context . ': Invalid input. Input was longer than the '.
                 'Maximum length of ' . $this->maxLength . ' characters.',
                 'Length of Input was more than the maximum length of ' . 
@@ -261,7 +261,7 @@ class HTMLPurifier_StringValidationRule extends HTMLPurifier_BaseValidationRule
         // check whitelist
         foreach ($this->whitelistPatterns as $pattern) {
             if (! preg_match("/{$pattern}/", $canonical)) {
-                throw new ValidationException(
+                throw new HTMLPurifier_ValidationException(
                     $context . ': Invalid input. Please conform to the regex ' . 
                     $pattern,
                     $context . ': Invalid input. Input does not conform to the'.
@@ -274,7 +274,7 @@ class HTMLPurifier_StringValidationRule extends HTMLPurifier_BaseValidationRule
         // check blacklist
         foreach ($this->blacklistPatterns as $pattern) {
             if (preg_match("/{$pattern}/", $canonical)) {
-                throw new ValidationException(
+                throw new HTMLPurifier_ValidationException(
                     $context . ': Invalid input. Dangerous input matching ' . 
                     $pattern,
                     $context . ': Invalid input. Input matches the blacklist '.

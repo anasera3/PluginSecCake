@@ -1049,7 +1049,7 @@ class HTMLPurifier_SafeRequest
      */
     private function _getIfValid($context, $input, $pattern, $type, $maxLength, $allowNull)
     {
-        $validationRule = new StringValidationRule($type, $this->_encoder);
+        $validationRule = new HTMLPurifier_StringValidationRule($type, $this->_encoder);
 
         if ($pattern != null) {
             $validationRule->addWhitelistPattern($pattern);

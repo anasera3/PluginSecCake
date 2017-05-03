@@ -53,6 +53,7 @@ class PostsController extends AppController{
     
     public function view(){
         
+      //  debug(App::uses('HtmlPurifierComponent', 'HtmlPurifier.Controller/Component'));
         
             //  App::uses('Xml', 'Utility');
 //*

@@ -100,7 +100,7 @@ class HTMLPurifier_IntegerValidationRule extends HTMLPurifier_BaseValidationRule
             $context = 'NoContextSupplied'; // TODO Invalid Arg Exception?
         }
         if (! is_string($input) && $input !== null) {
-            throw new ValidationException(
+            throw new HTMLPurifier_ValidationException(
                 "{$context}: Input required",
                 "Input was not a string or NULL: context={$context}",
                 $context
@@ -151,7 +151,7 @@ class HTMLPurifier_IntegerValidationRule extends HTMLPurifier_BaseValidationRule
             }
             $i = $canonical;
             if ($i != intval($i)) {
-                throw new ValidationException(
+                throw new HTMLPurifier_ValidationException(
                     'Invalid integer input: context=' . $context,
                     'Invalid integer input: Input is not a valid integer: '.$input,
                     $context
@@ -159,7 +159,7 @@ class HTMLPurifier_IntegerValidationRule extends HTMLPurifier_BaseValidationRule
             }
             $i = (int) $i;
             if ($i < $this->_minValue) {
-                throw new ValidationException(
+                throw new HTMLPurifier_ValidationException(
                     'Invalid integer input must not be less than '.$this->_minValue,
                     'Invalid integer input must not be less than '.$this->_minValue.
                     ': context=' . $context . ', input=' . $input,
@@ -167,7 +167,7 @@ class HTMLPurifier_IntegerValidationRule extends HTMLPurifier_BaseValidationRule
                 );
             }
             if ($i > $this->_maxValue) {
-                throw new ValidationException(
+                throw new HTMLPurifier_ValidationException(
                     'Invalid integer input must not be greater than '.
                     $this->_maxValue,
                     'Invalid integer input must not be greater than '.
@@ -179,7 +179,7 @@ class HTMLPurifier_IntegerValidationRule extends HTMLPurifier_BaseValidationRule
         }
         catch (NumberFormatException $e)
         {
-            throw new ValidationException(
+            throw new HTMLPurifier_ValidationException(
                 $context . ': Invalid integer input',
                 'Invalid integer input format: Caught NumberFormatException: '.
                 $e->getMessage() . 'context=' . $context . ', input=' . $input,

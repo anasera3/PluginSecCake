@@ -57,14 +57,17 @@ class HTMLPurifier_IntrusionException extends HTMLPurifier_Exception
      * @return does not return a value.
     */
     function __construct($userMessage = '', $logMessage = '')
-    {
-        global $ESAPI;
+    {global $ESAPI;
+        
+        $ESAPI = new HTMLPurifier_ESAPI('C:\xampp\htdocs\mssipfe\app\Plugin\HtmlPurifier\Config\ESAPI.xml');
+        
+        
 
         parent::__construct($userMessage);
         $this->logMessage = $logMessage;
         $logger = $ESAPI->getAuditor("IntrusionException");
         $logger->error(
-            DefaultAuditor::SECURITY, false, "INTRUSION - " . $logMessage
+            HTMLPurifier_DefaultAuditor::SECURITY, false, "INTRUSION - " . $logMessage
         );
     }
 
